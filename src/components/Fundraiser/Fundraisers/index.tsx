@@ -35,13 +35,13 @@ const Communities: NextPage = () => {
   const { data, loading } = useQuery(FUNDRAISER_QUERY, {
     variables: {
       topCommented: {
-        sources: 'Lenster Community',
+        sources: 'BCharity Fundraiser',
         sortCriteria: 'TOP_COMMENTED',
         publicationTypes: ['POST'],
         limit: 10
       },
       topCollected: {
-        sources: 'Lenster Community',
+        sources: 'BCharity Fundraiser',
         sortCriteria: 'TOP_COLLECTED',
         publicationTypes: ['POST'],
         limit: 10

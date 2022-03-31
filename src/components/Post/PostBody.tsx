@@ -1,6 +1,6 @@
 import 'linkify-plugin-mention'
 
-import CrowdfundShimmer from '@components/Shared/Shimmer/CrowdfundShimmer'
+import FundraiserShimmer from '@components/Shared/Shimmer/FundraiserShimmer'
 import { BCharityPost } from '@generated/bcharitytypes'
 import { UserAddIcon, UsersIcon } from '@heroicons/react/outline'
 import { linkifyOptions } from '@lib/linkifyOptions'
@@ -12,8 +12,8 @@ import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 import React, { useState } from 'react'
 
-const Crowdfund = dynamic(() => import('./Crowdfund'), {
-  loading: () => <CrowdfundShimmer />
+const Fundraiser = dynamic(() => import('./Fundraiser'), {
+  loading: () => <FundraiserShimmer />
 })
 
 dayjs.extend(relativeTime)
@@ -48,8 +48,8 @@ const PostBody: React.FC<Props> = ({ post }) => {
               {post?.metadata?.name}
             </a>
           </div>
-        ) : postType === 'crowdfund' ? (
-          <Crowdfund fund={post} />
+        ) : postType === 'fundraiser' ? (
+          <Fundraiser fund={post} />
         ) : (
           <div>
             <div

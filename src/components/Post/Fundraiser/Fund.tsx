@@ -160,7 +160,7 @@ const Fund: React.FC<Props> = ({ fund }) => {
               )
             }
           >
-            Fund
+            Donate Now
           </Button>
           <div className="mt-1.5 text-xs font-bold">
             Fund {collectModule?.amount?.value}{' '}

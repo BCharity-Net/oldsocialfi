@@ -164,11 +164,11 @@ const Create: React.FC = () => {
         attributes: [
           {
             traitType: 'type',
-            value: 'oppotunity'
+            value: 'volunteer'
           }
         ],
         media: [],
-        appId: 'BCharity Opportunity'
+        appId: 'BCharity Volunteer'
       }).finally(() => setIsUploading(false))
 
       createPostTypedData({
@@ -196,7 +196,7 @@ const Create: React.FC = () => {
       <GridItemFour>
         <SettingsHelper
           heading="Create volunteer opportunity"
-          description="Create new decentralized opportunity"
+          description="Create a new decentralized volunteer opportunity"
         />
       </GridItemFour>
       <GridItemEight>
@@ -226,7 +226,7 @@ const Create: React.FC = () => {
                 />
                 <TextArea
                   label="Description"
-                  placeholder="Tell us something about the fundraise!"
+                  placeholder="Tell us something about the volunteer opportunity!"
                   {...form.register('description')}
                 />
                 <div className="space-y-1.5">

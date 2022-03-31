@@ -10,7 +10,7 @@ import Custom404 from 'src/pages/404'
 
 import Details from './Details'
 
-const OPPORTUNITY_QUERY = gql`
+const FUNDRAISER_QUERY = gql`
   query Post($request: PublicationQueryRequest!) {
     publication(request: $request) {
       ... on Post {
@@ -21,27 +21,27 @@ const OPPORTUNITY_QUERY = gql`
   ${PostFragment}
 `
 
-const ViewOpportunity: NextPage = () => {
+const ViewFundraiser: NextPage = () => {
   const {
     query: { id }
   } = useRouter()
-  const { data, loading } = useQuery(OPPORTUNITY_QUERY, {
+  const { data, loading } = useQuery(FUNDRAISER_QUERY, {
     variables: { request: { publicationId: id } },
     skip: !id
   })
 
   if (loading || !data)
-    return <PageLoading message="Loading Volunteer Opportunity" />
+    return <PageLoading message="Loading Fundraising Campaign" />
   if (
     !data.publication ||
-    data.publication?.metadata?.attributes[0]?.value !== 'opportunity'
+    data.publication?.metadata?.attributes[0]?.value !== 'fundraisier'
   )
     return <Custom404 />
 
   return (
     <GridLayout className="pt-6">
       <GridItemFour>
-        <Details opportunity={data.publication} />
+        <Details fundraiser={data.publication} />
       </GridItemFour>
       <GridItemEight className="space-y-5">
         <Feed post={data.publication} type="community post" />
@@ -50,4 +50,4 @@ const ViewOpportunity: NextPage = () => {
   )
 }
 
-export default ViewOpportunity
+export default ViewFundraiser

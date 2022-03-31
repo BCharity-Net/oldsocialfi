@@ -10,7 +10,7 @@ import Custom404 from 'src/pages/404'
 
 import Details from './Details'
 
-const OPPORTUNITY_QUERY = gql`
+const VOLUNTEER_QUERY = gql`
   query Post($request: PublicationQueryRequest!) {
     publication(request: $request) {
       ... on Post {
@@ -25,16 +25,16 @@ const ViewOpportunity: NextPage = () => {
   const {
     query: { id }
   } = useRouter()
-  const { data, loading } = useQuery(OPPORTUNITY_QUERY, {
+  const { data, loading } = useQuery(VOLUNTEER_QUERY, {
     variables: { request: { publicationId: id } },
     skip: !id
   })
 
   if (loading || !data)
-    return <PageLoading message="Loading Volunteer Opportunity" />
+    return <PageLoading message="Loading Volunteering Opportunity" />
   if (
     !data.publication ||
-    data.publication?.metadata?.attributes[0]?.value !== 'opportunity'
+    data.publication?.metadata?.attributes[0]?.value !== 'volunteer'
   )
     return <Custom404 />
 

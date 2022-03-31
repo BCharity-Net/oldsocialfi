@@ -54,12 +54,12 @@ const CREATE_COLLECT_TYPED_DATA_MUTATION = gql`
 `
 
 interface Props {
-  opportunity: BCharityPost
+  fundraiser: BCharityPost
   setJoined: Dispatch<boolean>
   showJoin?: boolean
 }
 
-const Join: React.FC<Props> = ({ opportunity, setJoined, showJoin = true }) => {
+const Join: React.FC<Props> = ({ fundraiser, setJoined, showJoin = true }) => {
   const [{ data: network }] = useNetwork()
   const [{ data: account }] = useAccount()
   const [{ loading: signLoading }, signTypedData] = useSignTypedData()
@@ -137,7 +137,7 @@ const Join: React.FC<Props> = ({ opportunity, setJoined, showJoin = true }) => {
       toast.error(WRONG_NETWORK)
     } else {
       createCollectTypedData({
-        variables: { request: { publicationId: opportunity.pubId } }
+        variables: { request: { publicationId: fundraiser.pubId } }
       })
     }
   }

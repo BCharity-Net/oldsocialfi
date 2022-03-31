@@ -60,7 +60,7 @@ const MoreNavItems: React.FC = () => {
                   </Menu.Item>
                   <Menu.Item
                     as={NextLink}
-                    href="/fundraises/create"
+                    href="/fundraisers/create"
                     className={({ active }: { active: boolean }) =>
                       clsx(
                         { 'bg-gray-100 dark:bg-gray-800': active },

@@ -28,10 +28,10 @@ export const HAS_JOINED_QUERY = gql`
 `
 
 interface Props {
-  opportunity: BCharityPost
+  fundraiser: BCharityPost
 }
 
-const Details: React.FC<Props> = ({ opportunity }) => {
+const Details: React.FC<Props> = ({ fundraiser }) => {
   const { currentUser } = useContext(AppContext)
   const [showMembersModal, setShowMembersModal] = useState<boolean>(false)
   const [joined, setJoined] = useState<boolean>(false)
@@ -39,12 +39,12 @@ const Details: React.FC<Props> = ({ opportunity }) => {
     variables: {
       request: {
         collectRequests: {
-          publicationIds: opportunity.pubId,
+          publicationIds: fundraiser.pubId,
           walletAddress: currentUser?.ownedBy
         }
       }
     },
-    skip: !currentUser || !opportunity,
+    skip: !currentUser || !fundraiser,
     onCompleted(data) {
       setJoined(data?.hasCollected[0]?.results[0]?.collected)
     }
@@ -69,24 +69,24 @@ const Details: React.FC<Props> = ({ opportunity }) => {
         <div className="relative w-32 h-32 sm:w-72 sm:h-72">
           <img
             src={
-              opportunity?.metadata?.cover?.original?.url
-                ? opportunity?.metadata?.cover?.original?.url
-                : `https://avatar.tobi.sh/${opportunity?.pubId}.svg`
+              fundraiser?.metadata?.cover?.original?.url
+                ? fundraiser?.metadata?.cover?.original?.url
+                : `https://avatar.tobi.sh/${fundraiser?.pubId}.svg`
             }
             className="w-32 h-32 bg-gray-200 rounded-xl ring-8 ring-gray-50 sm:w-72 sm:h-72 dark:bg-gray-700 dark:ring-black"
-            alt={opportunity?.pubId}
+            alt={fundraiser?.pubId}
           />
         </div>
         <div className="pt-3 space-y-1">
           <div className="flex gap-1.5 items-center text-2xl font-bold truncate">
-            <div className="truncate">{opportunity?.metadata.name}</div>
+            <div className="truncate">{fundraiser?.metadata.name}</div>
           </div>
         </div>
         <div className="space-y-5">
-          {opportunity?.metadata.description && (
+          {fundraiser?.metadata.description && (
             <div className="mr-0 leading-7 sm:mr-10 linkify">
               <Linkify tagName="div" options={linkifyOptions}>
-                {opportunity?.metadata.description}
+                {fundraiser?.metadata.description}
               </Linkify>
             </div>
           )}
@@ -97,17 +97,17 @@ const Details: React.FC<Props> = ({ opportunity }) => {
               Member
             </div>
           ) : (
-            <Join opportunity={opportunity} setJoined={setJoined} />
+            <Join fundraiser={fundraiser} setJoined={setJoined} />
           )}
           <div className="space-y-2">
             <MetaDetails icon={<HashtagIcon className="w-4 h-4" />}>
-              {opportunity?.pubId}
+              {fundraiser?.pubId}
             </MetaDetails>
             <MetaDetails icon={<UsersIcon className="w-4 h-4" />}>
               <>
                 <button onClick={() => setShowMembersModal(!showMembersModal)}>
-                  {humanize(opportunity?.stats?.totalAmountOfCollects)}{' '}
-                  {opportunity?.stats?.totalAmountOfCollects > 1
+                  {humanize(fundraiser?.stats?.totalAmountOfCollects)}{' '}
+                  {fundraiser?.stats?.totalAmountOfCollects > 1
                     ? 'members'
                     : 'member'}
                 </button>
@@ -122,20 +122,20 @@ const Details: React.FC<Props> = ({ opportunity }) => {
                   show={showMembersModal}
                   onClose={() => setShowMembersModal(!showMembersModal)}
                 >
-                  <Collectors pubId={opportunity.pubId} />
+                  <Collectors pubId={fundraiser.pubId} />
                 </Modal>
               </>
             </MetaDetails>
             <MetaDetails icon={<UsersIcon className="w-4 h-4" />}>
               <div>
-                {humanize(opportunity?.stats?.totalAmountOfComments)}{' '}
-                {opportunity?.stats?.totalAmountOfComments > 1
+                {humanize(fundraiser?.stats?.totalAmountOfComments)}{' '}
+                {fundraiser?.stats?.totalAmountOfComments > 1
                   ? 'posts'
                   : 'post'}
               </div>
             </MetaDetails>
             <MetaDetails icon={<ClockIcon className="w-4 h-4" />}>
-              {dayjs(new Date(opportunity?.createdAt)).fromNow()}
+              {dayjs(new Date(fundraiser?.createdAt)).fromNow()}
             </MetaDetails>
           </div>
         </div>

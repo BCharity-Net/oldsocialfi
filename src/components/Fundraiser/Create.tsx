@@ -171,7 +171,7 @@ const Create: React.FC = () => {
     }
   )
 
-  const createFundraise = async (
+  const createFundraiser = async (
     title: string,
     amount: string,
     goal: string,
@@ -196,7 +196,7 @@ const Create: React.FC = () => {
         attributes: [
           {
             traitType: 'type',
-            value: 'fundraise'
+            value: 'fundraiser'
           },
           {
             traitType: 'goal',
@@ -204,7 +204,7 @@ const Create: React.FC = () => {
           }
         ],
         media: [],
-        appId: 'BCharity Fundraise'
+        appId: 'BCharity Fundraiser'
       }).finally(() => setIsUploading(false))
 
       createPostTypedData({
@@ -231,15 +231,16 @@ const Create: React.FC = () => {
     }
   }
 
-  if (loading) return <PageLoading message="Loading create fundraise" />
+  if (loading)
+    return <PageLoading message="Loading create fundraising campaigns" />
   if (!currentUser) return <Custom404 />
 
   return (
     <GridLayout>
       <GridItemFour>
         <SettingsHelper
-          heading="Create fundraise"
-          description="Create new decentralized fundraise"
+          heading="Create fundraising campaign"
+          description="Create new decentralized fundraising campaign"
         />
       </GridItemFour>
       <GridItemEight>
@@ -252,13 +253,13 @@ const Create: React.FC = () => {
                 form={form}
                 className="space-y-4"
                 onSubmit={({ title, amount, goal, recipient, description }) => {
-                  createFundraise(title, amount, goal, recipient, description)
+                  createFundraiser(title, amount, goal, recipient, description)
                 }}
               >
                 <Input
                   label="Title"
                   type="text"
-                  placeholder="BCharity DAO"
+                  placeholder="BCharity Fundrasing Campaign"
                   {...form.register('title')}
                 />
                 <div>
@@ -319,7 +320,7 @@ const Create: React.FC = () => {
                 />
                 <TextArea
                   label="Description"
-                  placeholder="Tell us something about the fundraise!"
+                  placeholder="Tell us something about the fundraising campaign!"
                   {...form.register('description')}
                 />
                 <div className="space-y-1.5">

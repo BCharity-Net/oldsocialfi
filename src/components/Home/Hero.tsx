@@ -11,7 +11,7 @@ const Hero: React.FC = () => {
             </div>
             <div className="leading-7 text-gray-700">
               Next generation community-driven composable, decentralized, and
-              permissionless public good network built on blockchains. 🌿
+              permissionless public good network built on blockchains.
             </div>
           </div>
           <div className="hidden flex-1 flex-shrink-0 w-full sm:block"></div>
