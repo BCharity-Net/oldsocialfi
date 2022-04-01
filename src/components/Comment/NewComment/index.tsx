@@ -92,7 +92,7 @@ const newCommentSchema = object({
 interface Props {
   refetch: any
   post: BCharityPost
-  type: 'comment' | 'program post'
+  type: 'comment' | 'program post' | 'volunteer post' | 'fundraise post'
 }
 
 const NewComment: React.FC<Props> = ({ refetch, post, type }) => {
@@ -208,7 +208,7 @@ const NewComment: React.FC<Props> = ({ refetch, post, type }) => {
           }
         ],
         media: attachments,
-        appId: 'Lenster'
+        appId: 'BCharity'
       }).finally(() => setIsUploading(false))
 
       createCommentTypedData({
@@ -318,7 +318,9 @@ const NewComment: React.FC<Props> = ({ refetch, post, type }) => {
                     ? 'Sign'
                     : writeLoading
                     ? 'Send'
-                    : type === 'program post'
+                    : type === 'program post' ||
+                      'volunteer post' ||
+                      'fundraise post'
                     ? 'Post'
                     : 'Comment'}
                 </Button>
