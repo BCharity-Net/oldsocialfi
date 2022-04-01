@@ -1,6 +1,6 @@
 import 'linkify-plugin-mention'
 
-import FundraiserShimmer from '@components/Shared/Shimmer/FundraiserShimmer'
+import FundraiseShimmer from '@components/Shared/Shimmer/FundraiseShimmer'
 import { BCharityPost } from '@generated/bcharitytypes'
 import { UserAddIcon, UsersIcon } from '@heroicons/react/outline'
 import { linkifyOptions } from '@lib/linkifyOptions'
@@ -12,8 +12,8 @@ import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 import React, { useState } from 'react'
 
-const Fundraiser = dynamic(() => import('./Fundraiser'), {
-  loading: () => <FundraiserShimmer />
+const Fundraise = dynamic(() => import('./Fundraise'), {
+  loading: () => <FundraiseShimmer />
 })
 
 dayjs.extend(relativeTime)
@@ -30,9 +30,9 @@ const PostBody: React.FC<Props> = ({ post }) => {
   )
 
   return (
-    <div className="linkify">
+    <div className="break-words linkify">
       <Linkify tagName="div" options={linkifyOptions}>
-        {postType === 'community' ? (
+        {postType === 'program' ? (
           <div className="flex items-center space-x-1.5">
             {post?.collectedBy ? (
               <UserAddIcon className="w-4 h-4 text-brand-500" />
@@ -42,14 +42,14 @@ const PostBody: React.FC<Props> = ({ post }) => {
             {post?.collectedBy ? (
               <span>Joined</span>
             ) : (
-              <span>Launched a new community</span>
+              <span>Launched a new program</span>
             )}
-            <a className="font-bold" href={`/communities/${post.pubId}`}>
+            <a className="font-bold" href={`/programs/${post.pubId}`}>
               {post?.metadata?.name}
             </a>
           </div>
-        ) : postType === 'fundraiser' ? (
-          <Fundraiser fund={post} />
+        ) : postType === 'fundraise' ? (
+          <Fundraise fund={post} />
         ) : (
           <div>
             <div

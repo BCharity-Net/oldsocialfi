@@ -1,3 +1,3 @@
-import Communities from '@components/Volunteer/Volunteers'
+import Programs from '@components/Volunteer/Volunteers'
 
-export default Communities
+export default Programs

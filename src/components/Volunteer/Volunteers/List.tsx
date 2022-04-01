@@ -1,19 +1,19 @@
-import CommunityProfile from '@components/Shared/CommunityProfile'
+import VolunteerOpportunity from '@components/Shared/VolunteerOpportunity'
 import { Card, CardBody } from '@components/UI/Card'
-import { Community } from '@generated/bcharitytypes'
+import { Volunteer } from '@generated/bcharitytypes'
 import React from 'react'
 
 interface Props {
-  communities: Community[]
+  volunteers: Volunteer[]
 }
 
-const List: React.FC<Props> = ({ communities }) => {
+const List: React.FC<Props> = ({ volunteers }) => {
   return (
     <Card>
       <CardBody className="space-y-6">
-        {communities.map((community: Community, index: number) => (
+        {volunteers.map((volunteer: Volunteer, index: number) => (
           <div key={index}>
-            <CommunityProfile community={community} />
+            <VolunteerOpportunity volunteer={volunteer} />
           </div>
         ))}
       </CardBody>

@@ -54,7 +54,7 @@ const Stats: React.FC = () => {
   const { data, loading, error } = useQuery(LENSTER_STATS_QUERY, {
     variables: {
       request: {
-        sources: ['BCharity', 'BCharity Community', 'BCharity Crowdfund']
+        sources: ['BCharity', 'BCharity Program', 'BCharity Crowdfund']
       }
     },
     pollInterval: 1000

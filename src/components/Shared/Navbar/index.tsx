@@ -63,19 +63,19 @@ const Navbar: React.FC = () => {
           current={router.pathname == '/explore'}
         />    */}
         <NavItem
-          url="/fundraisers"
-          name="Fundraisers"
-          current={router.pathname == '/crowdfunds'}
+          url="/programs"
+          name="Programs"
+          current={router.pathname == '/programs'}
         />
         <NavItem
           url="/volunteers"
           name="Volunteers"
-          current={router.pathname == '/opportunities'}
+          current={router.pathname == '/volunteers'}
         />
         <NavItem
-          url="/communities"
-          name="Communities"
-          current={router.pathname == '/communities'}
+          url="/fundraises"
+          name="Fundraises"
+          current={router.pathname == '/fundraises'}
         />
         <MoreNavItems />
       </>

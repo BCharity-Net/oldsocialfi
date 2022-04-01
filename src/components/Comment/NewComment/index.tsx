@@ -1,7 +1,8 @@
 import LensHubProxy from '@abis/LensHubProxy.json'
 import { gql, useMutation } from '@apollo/client'
-import Attachment from '@components/Post/NewPost/Attachment'
+import Attachment from '@components/Shared/Attachment'
 import Attachments from '@components/Shared/Attachments'
+import Giphy from '@components/Shared/Giphy'
 import IndexStatus from '@components/Shared/IndexStatus'
 import SelectCollectModule from '@components/Shared/SelectCollectModule'
 import SelectReferenceModule from '@components/Shared/SelectReferenceModule'
@@ -18,6 +19,7 @@ import {
   CreateCommentBroadcastItemResult,
   EnabledModule
 } from '@generated/types'
+import { IGif } from '@giphy/js-types'
 import { ChatAlt2Icon, PencilAltIcon } from '@heroicons/react/outline'
 import {
   defaultFeeData,
@@ -90,7 +92,7 @@ const newCommentSchema = object({
 interface Props {
   refetch: any
   post: BCharityPost
-  type: 'comment' | 'community post'
+  type: 'comment' | 'program post'
 }
 
 const NewComment: React.FC<Props> = ({ refetch, post, type }) => {
@@ -206,7 +208,7 @@ const NewComment: React.FC<Props> = ({ refetch, post, type }) => {
           }
         ],
         media: attachments,
-        appId: 'BCharity'
+        appId: 'Lenster'
       }).finally(() => setIsUploading(false))
 
       createCommentTypedData({
@@ -229,6 +231,15 @@ const NewComment: React.FC<Props> = ({ refetch, post, type }) => {
     }
   }
 
+  const setGifAttachment = (gif: IGif) => {
+    const attachment = {
+      item: gif.images.original.url,
+      type: 'image/gif'
+    }
+    // @ts-ignore
+    setAttachments([...attachments, attachment])
+  }
+
   return (
     <Card>
       <CardBody>
@@ -247,11 +258,12 @@ const NewComment: React.FC<Props> = ({ refetch, post, type }) => {
             />
           )}
           <TextArea
-            placeholder="Tell something cool!"
+            placeholder="Add something cool!"
             {...form.register('comment')}
           />
           <div className="flex items-center">
             <div className="flex items-center space-x-4">
+              <Giphy setGifAttachment={(gif: IGif) => setGifAttachment(gif)} />
               <Attachment
                 attachments={attachments}
                 setAttachments={setAttachments}
@@ -291,7 +303,7 @@ const NewComment: React.FC<Props> = ({ refetch, post, type }) => {
                     signLoading ||
                     writeLoading ? (
                       <Spinner size="xs" />
-                    ) : type === 'community post' ? (
+                    ) : type === 'program post' ? (
                       <PencilAltIcon className="w-4 h-4" />
                     ) : (
                       <ChatAlt2Icon className="w-4 h-4" />
@@ -306,7 +318,7 @@ const NewComment: React.FC<Props> = ({ refetch, post, type }) => {
                     ? 'Sign'
                     : writeLoading
                     ? 'Send'
-                    : type === 'community post'
+                    : type === 'program post'
                     ? 'Post'
                     : 'Comment'}
                 </Button>

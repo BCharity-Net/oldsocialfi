@@ -2,7 +2,7 @@ import LensHubProxy from '@abis/LensHubProxy.json'
 import { gql, useMutation } from '@apollo/client'
 import { Button } from '@components/UI/Button'
 import { Spinner } from '@components/UI/Spinner'
-import { BCharityPost } from '@generated/bcharitytypes'
+import { Volunteer } from '@generated/bcharitytypes'
 import { CreateCollectBroadcastItemResult } from '@generated/types'
 import { PlusIcon } from '@heroicons/react/outline'
 import { omit } from '@lib/omit'
@@ -54,12 +54,12 @@ const CREATE_COLLECT_TYPED_DATA_MUTATION = gql`
 `
 
 interface Props {
-  opportunity: BCharityPost
+  volunteer: Volunteer
   setJoined: Dispatch<boolean>
   showJoin?: boolean
 }
 
-const Join: React.FC<Props> = ({ opportunity, setJoined, showJoin = true }) => {
+const Join: React.FC<Props> = ({ volunteer, setJoined, showJoin = true }) => {
   const [{ data: network }] = useNetwork()
   const [{ data: account }] = useAccount()
   const [{ loading: signLoading }, signTypedData] = useSignTypedData()
@@ -137,7 +137,7 @@ const Join: React.FC<Props> = ({ opportunity, setJoined, showJoin = true }) => {
       toast.error(WRONG_NETWORK)
     } else {
       createCollectTypedData({
-        variables: { request: { publicationId: opportunity.pubId } }
+        variables: { request: { publicationId: volunteer.pubId } }
       })
     }
   }

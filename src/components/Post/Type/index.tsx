@@ -8,9 +8,11 @@ import React from 'react'
 
 import Collected from './Collected'
 import Commented from './Commented'
-import CommunityPost from './CommunityPost'
 import Funded from './Funded'
+import FundraisePost from './FundraisePost'
 import Mirrored from './Mirrored'
+import ProgramPost from './ProgramPost'
+import VolunteerPost from './VolunteerPost'
 
 dayjs.extend(relativeTime)
 
@@ -26,19 +28,26 @@ const PostType: React.FC<Props> = ({ post, type }) => {
   return (
     <>
       {post?.__typename === 'Mirror' && <Mirrored post={post} />}
-      {post?.__typename === 'Comment' &&
+      {(post?.__typename === 'Comment' &&
         type !== 'COMMENT' &&
-        postType !== 'community post' && <Commented post={post} />}
+        postType !== 'program post') ||
+        ('fundraise post' && <Commented post={post} />)}
       {post?.collectedBy &&
-        postType === 'crowdfund' &&
+        postType === 'fundraise' &&
         pathname !== '/notifications' && <Funded fund={post} />}
-      {postType === 'community post' && pathname !== '/communities/[id]' && (
-        <CommunityPost post={post} />
+      {postType === 'fundraise post' && pathname !== '/fundraise/[id]' && (
+        <FundraisePost post={post} />
       )}
-      {post?.collectedBy &&
-        type !== 'COLLECT' &&
-        postType !== 'community' &&
-        postType !== 'crowdfund' && <Collected post={post} />}
+      {postType === 'volunteer post' && pathname !== '/volunteers/[id]' && (
+        <VolunteerPost post={post} />
+      )}
+      {postType === 'program post' && pathname !== '/programs/[id]' && (
+        <ProgramPost post={post} />
+      )}
+      {(post?.collectedBy && type !== 'COLLECT' && postType !== 'program') ||
+        ('fundraise post' && postType !== 'fundraise' && (
+          <Collected post={post} />
+        ))}
     </>
   )
 }

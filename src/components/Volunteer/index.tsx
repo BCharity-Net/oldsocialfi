@@ -2,7 +2,7 @@ import { gql, useQuery } from '@apollo/client'
 import Feed from '@components/Comment/Feed'
 import { GridItemEight, GridItemFour, GridLayout } from '@components/GridLayout'
 import { PageLoading } from '@components/UI/PageLoading'
-import { PostFragment } from '@gql/PostFragment'
+import { VolunteerFragment } from '@gql/VolunteerFragment'
 import { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import React from 'react'
@@ -14,11 +14,11 @@ const VOLUNTEER_QUERY = gql`
   query Post($request: PublicationQueryRequest!) {
     publication(request: $request) {
       ... on Post {
-        ...PostFragment
+        ...VolunteerFragment
       }
     }
   }
-  ${PostFragment}
+  ${VolunteerFragment}
 `
 
 const ViewOpportunity: NextPage = () => {
@@ -34,17 +34,17 @@ const ViewOpportunity: NextPage = () => {
     return <PageLoading message="Loading Volunteering Opportunity" />
   if (
     !data.publication ||
-    data.publication?.metadata?.attributes[0]?.value !== 'volunteer'
+    data.publication?.metadata?.attributes[0]?.value !== 'community'
   )
     return <Custom404 />
 
   return (
     <GridLayout className="pt-6">
       <GridItemFour>
-        <Details opportunity={data.publication} />
+        <Details volunteer={data.publication} />
       </GridItemFour>
       <GridItemEight className="space-y-5">
-        <Feed post={data.publication} type="community post" />
+        <Feed post={data.publication} type="volunteer post" />
       </GridItemEight>
     </GridLayout>
   )

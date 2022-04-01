@@ -45,7 +45,7 @@ const MoreNavItems: React.FC = () => {
                 <>
                   <Menu.Item
                     as={NextLink}
-                    href="/communities/create"
+                    href="/programs/create"
                     className={({ active }: { active: boolean }) =>
                       clsx(
                         { 'bg-gray-100 dark:bg-gray-800': active },
@@ -55,12 +55,12 @@ const MoreNavItems: React.FC = () => {
                   >
                     <div className="flex items-center space-x-1.5">
                       <UsersIcon className="w-4 h-4" />
-                      <div>Create Community with Good People</div>
+                      <div>Create Program</div>
                     </div>
                   </Menu.Item>
                   <Menu.Item
                     as={NextLink}
-                    href="/fundraisers/create"
+                    href="/fundraises/create"
                     className={({ active }: { active: boolean }) =>
                       clsx(
                         { 'bg-gray-100 dark:bg-gray-800': active },
@@ -70,7 +70,7 @@ const MoreNavItems: React.FC = () => {
                   >
                     <div className="flex items-center space-x-1.5">
                       <CashIcon className="w-4 h-4" />
-                      <div>Create Fundraising Campaigns with Good Causes</div>
+                      <div>Create Fundraising Campaigns</div>
                     </div>
                   </Menu.Item>
                   <Menu.Item

@@ -14,7 +14,9 @@ import {
 } from './types'
 
 export type BCharityPost = Post & Mirror & Comment & { pubId: string }
-export type Community = Post & { pubId: string }
+export type Program = Post & { pubId: string }
+export type Volunteer = Post & { pubId: string }
+export type Fundraise = Post & { pubId: string }
 export type BCharityCollectModule = EmptyCollectModuleSettings &
   FeeCollectModuleSettings &
   LimitedFeeCollectModuleSettings &

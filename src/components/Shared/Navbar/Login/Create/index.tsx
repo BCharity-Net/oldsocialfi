@@ -32,7 +32,7 @@ const newUserSchema = object({
   handle: string()
     .min(2, { message: 'Handle should be atleast 2 characters' })
     .max(31, { message: 'Handle should be less than 32 characters' })
-    .regex(/^[a-z0-9_\.]+$/, { message: 'Invalid handle' })
+    .regex(/^[a-zA-Z0-9_\.]+$/, { message: 'Invalid handle' })
 })
 
 const Create: React.FC = () => {

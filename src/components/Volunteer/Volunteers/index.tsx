@@ -1,14 +1,14 @@
 import { gql, useQuery } from '@apollo/client'
 import { GridItemSix, GridLayout } from '@components/GridLayout'
 import { PageLoading } from '@components/UI/PageLoading'
-import { CommunityFragment } from '@gql/CommunityFragment'
+import { VolunteerFragment } from '@gql/VolunteerFragment'
 import { ChartBarIcon, FireIcon } from '@heroicons/react/outline'
 import { NextPage } from 'next'
 import React from 'react'
 
 import List from './List'
 
-const COMMUNITY_QUERY = gql`
+const VOLUNTEER_QUERY = gql`
   query (
     $topCommented: ExplorePublicationRequest!
     $topCollected: ExplorePublicationRequest!
@@ -16,32 +16,33 @@ const COMMUNITY_QUERY = gql`
     topCommented: explorePublications(request: $topCommented) {
       items {
         ... on Post {
-          ...CommunityFragment
+          ...VolunteerFragment
         }
       }
     }
     topCollected: explorePublications(request: $topCollected) {
       items {
         ... on Post {
-          ...CommunityFragment
+          ...VolunteerFragment
         }
       }
     }
   }
-  ${CommunityFragment}
+  ${VolunteerFragment}
 `
 
-const Communities: NextPage = () => {
-  const { data, loading } = useQuery(COMMUNITY_QUERY, {
+const Volunteers: NextPage = () => {
+  const { data, loading } = useQuery(VOLUNTEER_QUERY, {
     variables: {
       topCommented: {
-        sources: 'Lenster Community',
+        sources: 'BCharity Volunteer' && 'BCharity Community',
         sortCriteria: 'TOP_COMMENTED',
         publicationTypes: ['POST'],
         limit: 10
       },
       topCollected: {
-        sources: 'Lenster Community',
+        sources:
+          'BCharity Volunteer' && 'BCharity Community' && 'Lenster Community',
         sortCriteria: 'TOP_COLLECTED',
         publicationTypes: ['POST'],
         limit: 10
@@ -49,7 +50,8 @@ const Communities: NextPage = () => {
     }
   })
 
-  if (loading || !data) return <PageLoading message="Loading community" />
+  if (loading || !data)
+    return <PageLoading message="Loading volunteer opportunities" />
 
   return (
     <GridLayout className="pt-6">
@@ -58,17 +60,17 @@ const Communities: NextPage = () => {
           <FireIcon className="w-5 h-5 text-yellow-500" />
           <div>Most Active</div>
         </div>
-        <List communities={data?.topCommented.items} />
+        <List volunteers={data?.topCommented.items} />
       </GridItemSix>
       <GridItemSix>
         <div className="flex items-center mb-2 space-x-1.5 font-bold text-gray-500">
           <ChartBarIcon className="w-5 h-5 text-green-500" />
           <div>Fastest Growing</div>
         </div>
-        <List communities={data?.topCollected.items} />
+        <List volunteers={data?.topCollected.items} />
       </GridItemSix>
     </GridLayout>
   )
 }
 
-export default Communities
+export default Volunteers

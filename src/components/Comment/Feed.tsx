@@ -34,7 +34,7 @@ const COMMENT_FEED_QUERY = gql`
 
 interface Props {
   post: BCharityPost
-  type?: 'comment' | 'community post'
+  type?: 'comment' | 'program post' | 'fundraise post' | 'volunteer post'
   onlyFollowers?: boolean
   isFollowing?: boolean
 }

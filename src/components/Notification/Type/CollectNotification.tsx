@@ -23,7 +23,7 @@ const CollectNotification: React.FC<Props> = ({ notification }) => {
       <div className="flex items-center px-5 pt-5 space-x-1 text-sm text-gray-500">
         {postType === 'crowdfund' ? (
           <CashIcon className="w-4 h-4" />
-        ) : postType === 'community' ? (
+        ) : postType === 'program' ? (
           <UsersIcon className="w-4 h-4" />
         ) : (
           <CollectionIcon className="w-4 h-4" />
@@ -50,7 +50,7 @@ const CollectNotification: React.FC<Props> = ({ notification }) => {
           )}
           {postType === 'crowdfund' ? (
             <div>funded your</div>
-          ) : postType === 'community' ? (
+          ) : postType === 'program' ? (
             <div>joined your</div>
           ) : (
             <div>collected your</div>
