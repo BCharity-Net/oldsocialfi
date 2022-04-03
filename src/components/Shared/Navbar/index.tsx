@@ -95,11 +95,14 @@ const Navbar: React.FC = () => {
           <div className="flex flex-1 justify-start items-center">
             <div className="flex flex-shrink-0 items-center space-x-3">
               <Link href="/">
-                <a href="/">
-                  <div className="text-3xl font-black">
-                    <img className="w-8 h-8" src="/logo.jpg" alt="Logo" />
-                  </div>
-                </a>
+                <div className="inline-flex flex-grow justify-between items-center font-bold text-blue-900">
+                  <a href="/">
+                    <div className="text-3xl font-black">
+                      <img className="w-8 h-8" src="/logo.jpg" alt="Logo" />
+                    </div>
+                  </a>
+                  <span className="flex fle-grow ml-3 mr-3">BCharity</span>
+                </div>
               </Link>
             </div>
             <div className="lg:hidden md:hidden lg:inline-flex lg:flex-grow lg:w-auto flex flex-col">
