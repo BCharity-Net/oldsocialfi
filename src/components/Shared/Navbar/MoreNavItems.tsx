@@ -1,6 +1,6 @@
 import AppContext from '@components/utils/AppContext'
 import { Menu, Transition } from '@headlessui/react'
-import { CashIcon, UserIcon, UsersIcon } from '@heroicons/react/outline'
+import { CashIcon, SupportIcon, UsersIcon } from '@heroicons/react/outline'
 import clsx from 'clsx'
 import Link from 'next/link'
 import { Fragment, useContext } from 'react'
@@ -88,27 +88,11 @@ const MoreNavItems: React.FC = () => {
                       <div>Create Volunteering Opportunities</div>
                     </div>
                   </Menu.Item>
-                  <Menu.Item
-                    as={NextLink}
-                    href="/create"
-                    className={({ active }: { active: boolean }) =>
-                      clsx(
-                        { 'bg-gray-100 dark:bg-gray-800': active },
-                        'block px-4 py-1.5 text-sm text-gray-700 dark:text-gray-200 m-2 rounded-lg cursor-pointer'
-                      )
-                    }
-                  >
-                    <div className="flex items-center space-x-1.5">
-                      <UserIcon className="w-4 h-4" />
-                      <div>Create Profiles</div>
-                    </div>
-                  </Menu.Item>
                   <div className="border-b dark:border-gray-800" />
                 </>
               )}
-              {/* <Menu.Item
-                as={NextLink}
-                href="/contact"
+              <Menu.Item
+                as="div"
                 className={({ active }: { active: boolean }) =>
                   clsx(
                     { 'bg-gray-100 dark:bg-gray-800': active },
@@ -118,9 +102,9 @@ const MoreNavItems: React.FC = () => {
               >
                 <div className="flex items-center space-x-1.5">
                   <SupportIcon className="w-4 h-4" />
-                  <div>Contact</div>
+                  <div>Please Login</div>
                 </div>
-              </Menu.Item> */}
+              </Menu.Item>
             </Menu.Items>
           </Transition>
         </>

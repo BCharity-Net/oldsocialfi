@@ -5,7 +5,7 @@ import clsx from 'clsx'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 
 import MenuItems from './MenuItems'
 import MoreNavItems from './MoreNavItems'
@@ -22,6 +22,7 @@ const PING_QUERY = gql`
 
 const Navbar: React.FC = () => {
   const { currentUser, staffMode } = useContext(AppContext)
+  const [active, setActive] = useState(false)
   const { data: indexerData } = useQuery(PING_QUERY, {
     pollInterval: 5000,
     skip: !currentUser
@@ -31,6 +32,10 @@ const Navbar: React.FC = () => {
     url: string
     name: string
     current: boolean
+  }
+
+  const handleClick = () => {
+    setActive(!active)
   }
 
   const NavItem = ({ url, name, current }: NavItemProps) => {
@@ -96,6 +101,38 @@ const Navbar: React.FC = () => {
                   </div>
                 </a>
               </Link>
+            </div>
+            <div className="lg:hidden md:hidden lg:inline-flex lg:flex-grow lg:w-auto flex flex-col">
+              <>
+                <button
+                  className="inline-flex p-3 hover:bg-pink-300 rounded text-gray-300 ml-auto hover:text-gray-300 outline"
+                  onClick={handleClick}
+                >
+                  <svg
+                    className="w-3 h-3"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M4 6h16M4 12h16M4 18h16"
+                    />
+                  </svg>
+                </button>
+                <div
+                  className={`${
+                    active ? '' : 'hidden'
+                  }   w-full lg:inline-flex lg:flex-grow lg:w-auto mt-12 pt-12`}
+                >
+                  <div className="md:hidden flex flex-col">
+                    <NavItems />
+                  </div>
+                </div>
+              </>
             </div>
             <div className="hidden sm:block sm:ml-6">
               <div className="flex items-center space-x-4">
