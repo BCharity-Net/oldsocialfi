@@ -82,6 +82,7 @@ const Navbar: React.FC = () => {
           name="Fundraises"
           current={router.pathname == '/fundraises'}
         />
+        <NavItem url="/daos" name="DAOs" current={router.pathname == '/daos'} />
         <MoreNavItems />
       </>
     )

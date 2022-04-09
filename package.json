@@ -21,6 +21,7 @@
     "@headlessui/react": "^1.5.0",
     "@heroicons/react": "^1.0.6",
     "@hookform/resolvers": "^2.8.8",
+    "@skill-wallet/auth": "^1.0.50",
     "@tailwindcss/aspect-ratio": "^0.4.0",
     "clsx": "^1.1.1",
     "dayjs": "^1.11.0",

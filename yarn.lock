@@ -1649,6 +1649,11 @@
   resolved "https://registry.yarnpkg.com/@sindresorhus/is/-/is-0.14.0.tgz#9fb3a3cf3132328151f353de4632e01e52102bea"
   integrity sha512-9NET910DNaIPngYnLLPeg+Ogzqsi9uM4mSboU5y6p8S5DzMTVEsJZrawi+BoDNUVBa2DhJqQYUFvMDfgU062LQ==
 
+"@skill-wallet/auth@^1.0.50":
+  version "1.0.50"
+  resolved "https://registry.yarnpkg.com/@skill-wallet/auth/-/auth-1.0.50.tgz#e8a92e2749e6e331d819b1a633f3c3228c04c24d"
+  integrity sha512-zEe0V6VuMjOHs/KE/RwlWZdDJswDoXhOvVl8dINSFEWP35YIdil0T1r3MxS5PebNvbOiT8x1u+YpbTtcqgUx2Q==
+
 "@szmarczak/http-timer@^1.1.2":
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/@szmarczak/http-timer/-/http-timer-1.1.2.tgz#b1665e2c461a2cd92f4c1bbf50d5454de0d4b421"
