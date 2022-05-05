@@ -1,8 +1,5 @@
-/**
- * Upload image to IPFS
- * @param data - File data (images and videos)
- * @returns ipfs URL
- */
+import { BCharityAttachment } from '@generated/bcharitytypes'
+
 export async function uploadAssetsToIPFS(data: File) {
   const formData = new FormData()
   formData.append('file', data, 'img')
@@ -17,3 +14,5 @@ export async function uploadAssetsToIPFS(data: File) {
     type: data.type
   }
 }
+
+export default uploadAssetsToIPFS
