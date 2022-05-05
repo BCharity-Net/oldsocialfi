@@ -23,6 +23,9 @@ export type BCharityCollectModule = EmptyCollectModuleSettings &
   LimitedTimedFeeCollectModuleSettings &
   RevertCollectModuleSettings &
   TimedFeeCollectModuleSettings
+
+export type BCharityAttachment = { item: string; type: string }
+
 export type BCharityNewMirrorNotification = NewMirrorNotification & {
   publication: { pubId: string }
 }
