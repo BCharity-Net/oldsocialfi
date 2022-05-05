@@ -1,6 +1,5 @@
 import {
   Comment,
-  EmptyCollectModuleSettings,
   FeeCollectModuleSettings,
   LimitedFeeCollectModuleSettings,
   LimitedTimedFeeCollectModuleSettings,
