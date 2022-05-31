@@ -46,11 +46,11 @@ const Footer: React.FC = () => {
       </span>
       <a
         className="pr-3"
-        href="https://gitlab.com/bcharity/bcharity"
+        href="https://github.com/BCharity-Net/socialfi"
         target="_blank"
         rel="noreferrer"
       >
-        GitLab
+        Github
       </a>
       <a
         className="pr-3 hover:font-bold"
