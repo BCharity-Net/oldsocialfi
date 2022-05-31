@@ -46,7 +46,7 @@ const Footer: React.FC = () => {
       </span>
       <a
         className="pr-3"
-        href="https://github.com/BCharity-Net/socialfi"
+        href="https://gitlab.com/bcharity/bcharity"
         target="_blank"
         rel="noreferrer"
       >
